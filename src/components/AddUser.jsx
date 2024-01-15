@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 
+
 const InitialValue={
     name:'',
     username:'',
@@ -23,7 +24,8 @@ const clickfunction=(e)=>{
 }
 
 const AddUser=()=>{
-    const usersUrl = 'http://localhost:8080';
+    
+    const usersUrl = "http://localhost:8000";
 
     let navigate=useNavigate();
     const [user,setUser]=useState(InitialValue);
@@ -37,8 +39,9 @@ const AddUser=()=>{
         
     }
 
-    const addUserDetails=()=>{
+    const addUserDetails=async()=>{
         console.log(user);
+        await axios.post(`${usersUrl}/add`,user);
         navigate('/');
     }
 
